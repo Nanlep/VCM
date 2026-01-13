@@ -4,6 +4,7 @@ import { GoogleGenAI } from "@google/genai";
 const getClient = () => {
   const key = process.env.API_KEY;
   if (!key) return null;
+  // Fix: Always initialize GoogleGenAI with a named parameter
   return new GoogleGenAI({ apiKey: key });
 };
 
@@ -23,13 +24,15 @@ export const generateStrategicGuidance = async (vision: string, objectives: stri
   `;
 
   try {
+    // Fix: Updated model to 'gemini-3-flash-preview' for basic text tasks
     const response = await client.models.generateContent({
-      model: 'gemini-2.5-flash',
+      model: 'gemini-3-flash-preview',
       contents: prompt,
       config: {
         responseMimeType: 'application/json'
       }
     });
+    // Fix: Access .text property directly (not a method)
     return JSON.parse(response.text || "{}");
   } catch (error) {
     console.error("Gemini Error", error);
@@ -44,10 +47,12 @@ export const refineText = async (text: string, type: 'vision' | 'objective') => 
   const prompt = `Rewrite the following corporate ${type} to be more inspiring, concise, and actionable: "${text}"`;
 
   try {
+    // Fix: Updated model to 'gemini-3-flash-preview'
     const response = await client.models.generateContent({
-      model: 'gemini-2.5-flash',
+      model: 'gemini-3-flash-preview',
       contents: prompt,
     });
+    // Fix: Access .text property directly
     return response.text;
   } catch (error) {
     console.error(error);
@@ -79,13 +84,15 @@ export const generateVotingContext = async (vision: string, objectives: string[]
   `;
 
   try {
+    // Fix: Updated model to 'gemini-3-flash-preview'
     const response = await client.models.generateContent({
-      model: 'gemini-2.5-flash',
+      model: 'gemini-3-flash-preview',
       contents: prompt,
       config: {
         responseMimeType: 'application/json'
       }
     });
+    // Fix: Access .text property directly
     return JSON.parse(response.text || "{}");
   } catch (error) {
     console.error("Gemini Tips Error", error);
