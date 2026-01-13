@@ -41,7 +41,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLogin }) => {
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-teal-400">Team's Consensus.</span>
             </h1>
             <p className="text-xl text-slate-500 mb-10 leading-relaxed max-w-2xl mx-auto font-medium">
-              Precision mapping for high-stakes decisions. Align co-founders, boards, and global teams in minutes. **First session is free.**
+              Precision mapping for high-stakes decisions. Align executive stakeholders, boards, and global teams in minutes. **First session is free.**
             </p>
             <Button size="lg" className="h-16 px-10 text-xl shadow-2xl shadow-brand-500/20 rounded-2xl" onClick={onLogin}>
               Create Free Session <ArrowRight className="ml-2" size={24} />
